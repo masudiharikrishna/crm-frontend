@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# Customer Form and CRM Push Components
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The `CustomerForm` and `CRMpush` components are part of a React application designed for capturing customer information and pushing it to a CRM system.
 
-In the project directory, you can run:
+- **`CustomerForm`**: Provides a form for entering customer details such as name, email, phone number, address, city, state, pincode, and organization. Submits the data to a backend API and redirects to the CRM push page upon successful submission.
 
-### `npm start`
+- **`CRMpush`**: Fetches and displays the customer data based on the ID received from the URL state. Provides a button to push the customer data to a CRM system (functionality to be implemented).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Customer Form**:
+  - Captures various customer details.
+  - Sends a POST request to create a new customer record.
+  - Redirects to the CRM push page upon successful submission.
 
-### `npm test`
+- **CRM Push**:
+  - Fetches customer data based on ID.
+  - Displays customer information in a table format.
+  - Includes a button to push data to a CRM system (functionality to be implemented).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Dependencies
 
-### `npm run build`
+- `react`: 18.x or higher
+- `react-router-dom`: 6.x or higher
+- `bootstrap`: 5.x or higher
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository or copy the component files into your React project.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Ensure you have the necessary dependencies installed. If not, install them using npm or yarn:
 
-### `npm run eject`
+    ```bash
+    npm install react react-router-dom bootstrap
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    or
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    yarn add react react-router-dom bootstrap
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Add the components to your React project.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+### Customer Form
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Ensure that your backend server is running and accessible at `http://localhost:5000`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Use the `CustomerForm` component in your application. Include it in your routing configuration or another component as needed.
 
-### Code Splitting
+    Example using `react-router-dom`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    ```jsx
+    import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+    import CustomerForm from './CustomerForm';
+    import CRMpush from './CRMpush';
 
-### Analyzing the Bundle Size
+    function App() {
+      return (
+        <Router>
+          <Switch>
+            <Route path="/customer-form" component={CustomerForm} />
+            <Route path="/CRMpush" component={CRMpush} />
+            {/* Other routes */}
+          </Switch>
+        </Router>
+      );
+    }
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. Navigate to the `/customer-form` route to access the form. Upon successful submission, you will be redirected to the `/CRMpush` route with the newly created customer ID.
 
-### Making a Progressive Web App
+### CRM Push
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. After submitting the customer form, the `CRMpush` component will automatically be loaded if a valid customer ID is provided.
 
-### Advanced Configuration
+2. The `CRMpush` component will fetch and display the customer data. It will also provide a button to push the data to a CRM system (functionality to be implemented).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Styling
 
-### Deployment
+Both components use Bootstrap for styling. Ensure Bootstrap is included in your project. If not, you can include it in your `index.html` or install it via npm/yarn:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm install bootstrap
+```
 
-### `npm run build` fails to minify
+or
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+yarn add bootstrap
+```
+
+Include Bootstrap in your project by adding the following line to your `index.js` or `App.js` file:
+
+```jsx
+import 'bootstrap/dist/css/bootstrap.min.css';
+```
+
+## API Endpoints
+
+- **Customer Form**:
+  - **POST** `http://localhost:5000/api/customers`
+  
+    Creates a new customer record. The request body should contain the customer information.
+
+- **CRM Push**:
+  - **GET** `http://localhost:5000/api/customers/:id`
+
+    Fetches customer data by ID. Replace `:id` with the actual customer ID.
+
+## Error Handling
+
+- Alerts are shown in case of errors during form submission or data fetching.
+- If the form submission is successful, the user is redirected to the CRM push page with the newly created customer's ID.
+
+## Contributing
+
+If you'd like to contribute to these components or improve them, please fork the repository and submit a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to adjust any details according to your project’s needs!

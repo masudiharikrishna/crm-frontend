@@ -1,0 +1,17 @@
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+.span-element{
+    color: red;
+}
+h1{
+    text-decoration: underline;
+}
+.input-container{
+    width: 40vw;
+    font-weight: 500;
+}
