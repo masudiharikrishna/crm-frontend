@@ -63,7 +63,7 @@ The `CustomerForm` and `CRMpush` components are part of a React application desi
       return (
         <Router>
           <Switch>
-            <Route path="/customer-form" component={CustomerForm} />
+            <Route path="/" component={CustomerForm} />
             <Route path="/CRMpush" component={CRMpush} />
             {/* Other routes */}
           </Switch>
@@ -72,7 +72,7 @@ The `CustomerForm` and `CRMpush` components are part of a React application desi
     }
     ```
 
-3. Navigate to the `/customer-form` route to access the form. Upon successful submission, you will be redirected to the `/CRMpush` route with the newly created customer ID.
+3. Navigate to the `/` route to access the form. Upon successful submission, you will be redirected to the `/CRMpush` route with the newly created customer ID.
 
 ### CRM Push
 
